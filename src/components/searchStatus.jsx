@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import PropTypes from 'prop-types'
 
-const TotalCompany = ({ length }) => {
+const SearchStatus = ({ length }) => {
     const frase = (num) => {
         if (num === 0) {
             return 'Никого не нашлось для тебя'
@@ -20,8 +20,8 @@ const TotalCompany = ({ length }) => {
         </div>
     )
 }
-TotalCompany.propTypes = {
+SearchStatus.propTypes = {
     length: PropTypes.number.isRequired
 }
 
-export default TotalCompany
+export default SearchStatus

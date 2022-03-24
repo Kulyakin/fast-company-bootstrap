@@ -16,7 +16,7 @@ const User = ({
             <td>{name}</td>
             <td>
                 {qualities.map((key) => (
-                    <Quality color={key.color} name={key.name} key={key._id}/>
+                    <Quality color={key.color} name={key.name} key={key._id} />
                     // return <span className={"badge bg-" + key.color + " mx-1"}>{key.name}</span>
                 ))}
             </td>

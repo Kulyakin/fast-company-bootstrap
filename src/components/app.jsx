@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import api from '../api'
 import Users from './users'
-import TotalCompany from './searchStatus'
+import SearchStatus from './searchStatus'
 
 function App() {
     const [users, setUsers] = useState(api.users.fetchAll())
     const handleDelete = (userId) => {
         setUsers(users.filter((user) => user._id !== userId))
-        console.log(users)
     }
     const handleToggleBookMark = (id) => {
         setUsers(
@@ -22,7 +21,7 @@ function App() {
     }
     return (
         <div>
-            <TotalCompany length={users.length} />
+            <SearchStatus length={users.length} />
             <Users
                 onDelete={handleDelete}
                 onToggleBookMark={handleToggleBookMark}
