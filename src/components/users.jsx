@@ -8,18 +8,13 @@ import api from '../api'
 
 const Users = ({ users: allUsers, ...rest }) => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [professions, setProfession] = useState(api.professions.fetchAll())
+    const [professions, setProfession] = useState()
     const count = allUsers.length
     const pageSize = 4
     // запросы без redux
     useEffect(() => {
-        console.log('send request')
         api.professions.fetchAll().then((data) => setProfession(data))
     }, [])
-
-    useEffect(() => {
-        console.log(professions)
-    }, [professions])
 
     const handleProfessionSelect = (params) => {
         setProfession(params)
@@ -38,10 +33,10 @@ const Users = ({ users: allUsers, ...rest }) => {
 
     return (
         <>
-            <GroupList
+            {professions && <GroupList
                 items={professions}
                 onItemSelect={handleProfessionSelect}
-            />
+            />}
             <table className="table table-dark">
                 <thead>
                     <tr>
@@ -81,3 +76,10 @@ Users.propTypes = {
 }
 
 export default Users
+
+/*
+{professions && <GroupList
+items={professions}
+onItemSelect={handleProfessionSelect}/>}          
+Условнй рендеринг
+*/
