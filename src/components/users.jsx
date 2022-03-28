@@ -33,10 +33,12 @@ const Users = ({ users: allUsers, ...rest }) => {
 
     return (
         <>
-            {professions && <GroupList
-                items={professions}
-                onItemSelect={handleProfessionSelect}
-            />}
+            {professions && (
+                <GroupList
+                    items={professions}
+                    onItemSelect={handleProfessionSelect}
+                />
+            )}
             <table className="table table-dark">
                 <thead>
                     <tr>
@@ -76,10 +78,3 @@ Users.propTypes = {
 }
 
 export default Users
-
-/*
-{professions && <GroupList
-items={professions}
-onItemSelect={handleProfessionSelect}/>}          
-Условнй рендеринг
-*/
