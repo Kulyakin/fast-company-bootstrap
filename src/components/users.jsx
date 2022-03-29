@@ -36,15 +36,26 @@ const Users = ({ users: allUsers, ...rest }) => {
         : allUsers
 
     const userCrop = paginate(filteredUsers, currentPage, pageSize)
+    const clearFilter = () => {
+        setSelectedProf()
+    }
 
     return (
         <>
             {professions && count > 0 && (
-                <GroupList
-                    selectedItem={selectedProf}
-                    items={professions}
-                    onItemSelect={handleProfessionSelect}
-                />
+                <>
+                    <GroupList
+                        selectedItem={selectedProf}
+                        items={professions}
+                        onItemSelect={handleProfessionSelect}
+                    />
+                    <button
+                        className="btn btn-secondary nt-2"
+                        onClick={clearFilter}
+                    >
+                        Очистить
+                    </button>
+                </>
             )}
             {count > 0 && (
                 <table className="table table-dark">
