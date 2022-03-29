@@ -9,6 +9,7 @@ import api from '../api'
 const Users = ({ users: allUsers, ...rest }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [professions, setProfession] = useState()
+    const [selectedProf, setSelectedProf] = useState()
     const count = allUsers.length
     const pageSize = 4
     // запросы без redux
@@ -16,8 +17,9 @@ const Users = ({ users: allUsers, ...rest }) => {
         api.professions.fetchAll().then((data) => setProfession(data))
     }, [])
 
-    const handleProfessionSelect = (params) => {
-        console.log(params)
+    const handleProfessionSelect = (item) => {
+        setSelectedProf(item)
+        console.log(item)
     }
 
     const handlePageChange = (pageIndex) => {
@@ -35,6 +37,7 @@ const Users = ({ users: allUsers, ...rest }) => {
         <>
             {professions && count > 0 && (
                 <GroupList
+                    selectedItem={selectedProf}
                     items={professions}
                     onItemSelect={handleProfessionSelect}
                 />
