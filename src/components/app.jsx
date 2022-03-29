@@ -5,6 +5,7 @@ import SearchStatus from './searchStatus'
 
 function App() {
     const [users, setUsers] = useState(api.users.fetchAll())
+    console.log(users.length)
     const handleDelete = (userId) => {
         setUsers(users.filter((user) => user._id !== userId))
     }

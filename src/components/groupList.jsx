@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const GroupList = ({ items, valueProperty, contentProperty }) => {
+const GroupList = ({ items, valueProperty, contentProperty, onItemSelect }) => {
     console.log(Object.keys(items))
     return (
         <ul className="list-group">
@@ -9,6 +9,8 @@ const GroupList = ({ items, valueProperty, contentProperty }) => {
                 <li
                     key={items[item][valueProperty]}
                     className="list-group-item"
+                    onClick={() => onItemSelect(items[item])}
+                    role="button"
                 >
                     {items[item][contentProperty]}
                 </li>
@@ -24,7 +26,8 @@ GroupList.defaultProps = {
 GroupList.propTypes = {
     items: PropTypes.object.isRequired,
     valueProperty: PropTypes.string.isRequired,
-    contentProperty: PropTypes.string.isRequired
+    contentProperty: PropTypes.string.isRequired,
+    onItemSelect: PropTypes.func
 }
 
 export default GroupList

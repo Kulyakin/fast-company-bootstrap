@@ -17,7 +17,7 @@ const Users = ({ users: allUsers, ...rest }) => {
     }, [])
 
     const handleProfessionSelect = (params) => {
-        setProfession(params)
+        console.log(params)
     }
 
     const handlePageChange = (pageIndex) => {
