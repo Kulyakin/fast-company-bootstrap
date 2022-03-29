@@ -33,37 +33,39 @@ const Users = ({ users: allUsers, ...rest }) => {
 
     return (
         <>
-            {professions && (
+            {professions && count > 0 && (
                 <GroupList
                     items={professions}
                     onItemSelect={handleProfessionSelect}
                 />
             )}
-            <table className="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Имя</th>
-                        <th scope="col">Качества</th>
-                        <th scope="col">Профессия</th>
-                        <th scope="col">Встречи</th>
-                        <th scope="col">Оценка</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {userCrop.map((user) => (
-                        <User
-                            {...user}
-                            {...rest}
-                            key={user._id}
-                            name={user.name}
-                            qualities={user.qualities}
-                            profession={user.profession.name}
-                            completedMeetings={user.completedMeetings}
-                        />
-                    ))}
-                </tbody>
-            </table>
+            {count > 0 && (
+                <table className="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Качества</th>
+                            <th scope="col">Профессия</th>
+                            <th scope="col">Встречи</th>
+                            <th scope="col">Оценка</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {userCrop.map((user) => (
+                            <User
+                                {...user}
+                                {...rest}
+                                key={user._id}
+                                name={user.name}
+                                qualities={user.qualities}
+                                profession={user.profession.name}
+                                completedMeetings={user.completedMeetings}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+            )}
             <Pagination
                 itemsCount={count}
                 pageSize={pageSize}
