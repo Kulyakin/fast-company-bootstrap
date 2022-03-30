@@ -24,9 +24,7 @@ const SearchStatus = ({ length }) => {
                 <span className="badge bg-info text-dark">
                     {length === 0 ? phrase(length) : length + phrase(length)}
                 </span>
-                <button>
-                    <i className="bi bi-moon"></i>
-                </button>
+                <i className="bi bi-moon btn btn-secondary nt-2"></i>
             </h2>
         </div>
     )

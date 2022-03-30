@@ -11,7 +11,7 @@ const Users = ({ users: allUsers, ...rest }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [professions, setProfession] = useState()
     const [selectedProf, setSelectedProf] = useState()
-    const pageSize = 1
+    const pageSize = 4
     // запросы без redux
     useEffect(() => {
         api.professions.fetchAll().then((data) => setProfession(data))
@@ -37,8 +37,17 @@ const Users = ({ users: allUsers, ...rest }) => {
     }
 
     const filteredUsers = selectedProf
+        ? allUsers.filter(
+              (user) =>
+                  JSON.stringify(user.profession) ===
+                  JSON.stringify(selectedProf)
+          )
+        : allUsers
+    /*
+    const filteredUsers = selectedProf
         ? allUsers.filter((user) => user.profession === selectedProf)
         : allUsers
+    */
     const count = filteredUsers.length
 
     const userCrop = paginate(filteredUsers, currentPage, pageSize)
@@ -77,6 +86,7 @@ const Users = ({ users: allUsers, ...rest }) => {
                                 <th scope="col">Профессия</th>
                                 <th scope="col">Встречи</th>
                                 <th scope="col">Оценка</th>
+                                <th scope="col">Избранное</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -108,7 +118,7 @@ const Users = ({ users: allUsers, ...rest }) => {
     )
 }
 Users.propTypes = {
-    users: PropTypes.array.isRequired
+    users: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 
 export default Users
